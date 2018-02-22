@@ -1,7 +1,7 @@
 // Author:	Jonathan Keslake
 // Version: 28/08/2017
 
-#include "EnemyAI.h"
+#include "HTNController.h"
 
 // #include "Runtime/Engine/Classes/Engine/Engine.h" 
 #include "Runtime/Engine/Public/TimerManager.h"
@@ -9,14 +9,8 @@
 #include "Navigation/CrowdFollowingComponent.h"
 #include "Runtime/Engine/Classes/Kismet/KismetMathLibrary.h"
 
-#include "EnemyCharacter.h"
-
-#include "Squad/SquadHub.h"
-
 #include "Tasks/TaskHub.h"
 #include "Tasks/EnemyTask.h"
-
-#include "Player/TMOCharacter.h"
 
 UTaskHub* AHTNController::TaskHub;
 
@@ -43,16 +37,9 @@ AHTNController::AHTNController(const FObjectInitializer& ObjectInitializer)
 void AHTNController::Possess(APawn* InPawn)
 {
 	Super::Possess(InPawn);
-	AEnemyCharacter* controlledChar = Cast<AEnemyCharacter>(InPawn);
-
-	if (controlledChar)
-	{
-		CharacterBlackboard = controlledChar->SetupBlackboardComponent();
-        
-        if (!CharacterBlackboard)
-        {
-            Character = new FEnemyBlackboard();
-        }
+    if (!CharacterBlackboard)
+    {
+        Character = new FEnemyBlackboard();
 	}
 }
 

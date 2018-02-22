@@ -4,12 +4,9 @@
 
 #include "Runtime/Engine/Classes/Engine/Engine.h" 
 
-#include "Enemies/EnemyCharacter.h"
-#include "Enemies/EnemyAI.h"
+#include "HTN/HTNController.h"
 
-#include "Enemies/Tasks/TaskHub.h"
-
-#include "Enemies/Squad/SquadHub.h"
+#include "HTN/Tasks/TaskHub.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // UEnemyTask
@@ -18,12 +15,6 @@
 UEnemyTask* UEnemyTask::GetTaskByName(FString& NameOfTask)
 {
 	return AEnemyAI::TaskHub->GetTaskByName(NameOfTask);
-}
-
-/** Function to obtain the USquadHub which contains the squad blackboard */
-USquadHub* UEnemyTask::GetSquadHub()
-{
-	return AEnemyCharacter::SquadHub;
 }
 
 /** Function called to print the name of the task, used for debugging purposes */
